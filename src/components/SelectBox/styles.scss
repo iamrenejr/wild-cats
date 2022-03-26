@@ -1,0 +1,7 @@
+@import "bourbon";
+
+.select-bar {
+	@include margin(0 auto);
+	@include size(200px, 25px);
+	@include position(absolute, 40% 0 0 0);
+}

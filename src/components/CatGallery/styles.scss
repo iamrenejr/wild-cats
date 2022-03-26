@@ -1,0 +1,11 @@
+.gallery-wrapper > a:nth-child(2n) > img {
+	max-height: 150px;
+}
+
+.gallery-wrapper > a:nth-child(2n + 1) > img {
+	max-width: 190px;
+}
+
+.gallery-wrapper > a:nth-child(3n-2) > img {
+	max-height: 90px;
+}

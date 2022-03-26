@@ -1,0 +1,22 @@
+@import "bourbon";
+
+.homepage {
+	@include position(relative, null null null null);
+	@include size(100%);
+}
+
+.select-box-wrapper {
+	@include position(relative, null null null null);
+	@include size(100%, 20%);
+}
+
+.gallery-wrapper {
+	@include position(relative, 0 0 0 0);
+	@include size(100%, 80%);
+
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: flex-start;
+}

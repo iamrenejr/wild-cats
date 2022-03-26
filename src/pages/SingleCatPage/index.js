@@ -1,3 +1,3 @@
+const SingleCatPage = () => <h2 onClick={() => history.back()}>SINGLE CAT</h2>;
 
-
-export {}
+export default SingleCatPage;
