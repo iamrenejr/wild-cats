@@ -1,5 +1,6 @@
 import _ from "lodash";
 
+import { mergeCatDataItemsById } from "../../utils/mergeArrayOfObjects";
 import {
   SELECT_CAT,
   GET_BREED_DATA_SUCCESS,
@@ -25,16 +26,15 @@ const storeBreedData: LocalReducer = (oldState, payload) =>
     : oldState;
 
 const storeCatDataByBreed: LocalReducer = (oldState, payload) =>
-  _.isObject(payload) &&
-  payload?.breed !== undefined &&
-  _.isString(payload?.breed) &&
-  payload?.data !== undefined &&
-  !oldState.catData[payload.breed]
+  _.isObject(payload) && _.isString(payload?.breed)
     ? {
         ...oldState,
         catData: {
           ...oldState.catData,
-          [payload.breed]: payload.data,
+          [payload.breed]: mergeCatDataItemsById(
+            oldState?.catData?.[payload.breed],
+            payload.data
+          ),
         },
       }
     : oldState;

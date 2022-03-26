@@ -1,7 +1,11 @@
 @import "bourbon";
 
 .select-bar {
-	@include margin(0 auto);
-	@include size(200px, 25px);
-	@include position(absolute, 40% 0 0 0);
+	@include margin(0);
+	@include size(200px, 40px);
+	@include position(relative, 0 0 0 0);
+	@include border-color(null null #abefcd null);
+	@include border-style(none none dashed none);
+
+	border-radius: 10px;
 }

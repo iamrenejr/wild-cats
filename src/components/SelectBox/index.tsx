@@ -4,7 +4,6 @@ import "./styles.scss";
 
 interface SelectBoxProps {
   style?: Style;
-  optionStyle?: Style;
   selected: string;
   data: Record<string, ICatBreedsData>;
   onSelect: SelectOnChangeHandler;
@@ -12,7 +11,7 @@ interface SelectBoxProps {
 }
 type SelectBox = (props: SelectBoxProps) => JSX.Element;
 export const SelectBox: SelectBox = (props) => {
-  const { data, onSelect, optionStyle, placeholder, selected, style } = props;
+  const { data, onSelect, placeholder, selected, style } = props;
   return (
     <select
       style={style}
@@ -21,12 +20,12 @@ export const SelectBox: SelectBox = (props) => {
       value={selected}
     >
       {_.isEmpty(selected) ? (
-        <option style={optionStyle} value="" key="placeholder">
+        <option value="" key="placeholder">
           {placeholder}
         </option>
       ) : null}
       {_.values(data).map(({ name }) => (
-        <option style={optionStyle} value={name} key={name}>
+        <option value={name} key={name}>
           {name}
         </option>
       ))}

@@ -4,4 +4,5 @@ export const initialState = {
   catData: {
     "": [{ id: "", name: "", description: "", url: "" }],
   },
+  maxReachedBreeds: { "": false },
 };

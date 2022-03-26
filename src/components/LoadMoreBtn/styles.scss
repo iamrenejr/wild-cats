@@ -1,0 +1,67 @@
+@import 'bourbon';
+@import '../../assets/plugins/hover';
+
+$full-margin: 20px;
+
+@include keyframes(load-more-btn-animation) {
+	0% {
+		@include size(0);
+		@include margin(0);
+		font-size: 0;
+		opacity: 0;
+	}
+
+	50% {
+		@include size(50px);
+		@include margin(5px);
+		font-size: 0.2em;
+		opacity: 0.9;
+	}
+
+	100% {
+		@include size(110px, 40px);
+		@include margin($full-margin);
+		font-size: 1em;
+		opacity: 1;
+	}
+}
+
+.load-more-btn {
+	@include margin(0);
+	@include size(auto, 40px);
+	@include prefixed(animation, load-more-btn-animation 1s 0s 1 linear forwards);
+
+	border-radius: 10px;
+}
+
+@include keyframes(load-more-btn-leaving-animation) {
+	0% {
+		@include size(110px, 40px);
+		@include margin($full-margin);
+		font-size: 1em;
+		opacity: 1;
+	}
+
+	50% {
+		@include size(20px);
+		@include margin(5px);
+		font-size: 0.1em;
+		opacity: 0.9;
+	}
+
+	100% {
+		@include size(0);
+		@include margin(0);
+		font-size: 0;
+		opacity: 0;
+	}
+}
+
+.load-more-btn-leaving {
+	@include margin(0);
+	@include prefixed(
+		animation,
+		load-more-btn-leaving-animation 1s 0s 1 linear forwards
+	);
+	border-radius: 10px;
+}

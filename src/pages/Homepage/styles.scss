@@ -8,15 +8,41 @@
 .select-box-wrapper {
 	@include position(relative, null null null null);
 	@include size(100%, 20%);
+
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.load-more-btn-wrapper {
+	@include margin(0);
 }
 
 .gallery-wrapper {
 	@include position(relative, 0 0 0 0);
 	@include size(100%, 80%);
 
-	display: flex;
+	display: inline-flex;
 	flex-flow: row wrap;
 	justify-content: center;
 	align-items: center;
 	align-content: flex-start;
+}
+
+.gallery-wrapper > div:nth-child(1) > img {
+	max-height: 280px !important;
+	max-width: 280px !important;
+}
+
+.gallery-wrapper > div:nth-child(2n) > img {
+	max-height: 150px;
+}
+
+.gallery-wrapper > div:nth-child(2n + 1) > img {
+	max-width: 190px;
+}
+
+.gallery-wrapper > div:nth-child(3n-2) > img {
+	max-height: 90px;
 }

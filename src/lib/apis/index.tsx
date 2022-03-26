@@ -1,4 +1,5 @@
 import axios, { AxiosResponse, Method } from "axios";
+
 import { cats } from "./cats";
 
 export type CallApi = (
@@ -10,6 +11,7 @@ export type CallApi = (
 export const callApi: CallApi = (method, path, headers, data) => {
   const newHeaders = {
     ...(headers ? headers : {}),
+    "content-type": "application/json",
     "x-api-key": "",
   };
   return axios.request({

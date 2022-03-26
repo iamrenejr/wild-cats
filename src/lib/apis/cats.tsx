@@ -1,5 +1,7 @@
 import { AxiosResponse } from "axios";
+
 import type { CallApi } from "./";
+import { PAGE_SIZE } from "../constants";
 
 interface CatsReturn {
   getBreedData: () => Promise<AxiosResponse>;
@@ -13,7 +15,7 @@ export const cats: Cats = (callApi) => ({
   getCatDataByBreed: (breedId, page) => {
     return callApi(
       "GET",
-      `v1/images/search?limit=10&page=${page}&breed_id=${breedId}`
+      `v1/images/search?limit=${PAGE_SIZE}&page=${page}&breed_id=${breedId}&order=DESC`
     );
   },
 });

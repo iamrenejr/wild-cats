@@ -1,16 +1,38 @@
 @import 'bourbon';
 @import '../../assets/plugins/hover';
 
+@include keyframes(cat-photo-animation) {
+	10% {
+		@include margin(2px);
+	}
+
+	50% {
+		@include margin(12px);
+	}
+
+	100% {
+		@include margin(15px);
+	}
+}
+
 .cat-image {
-	@include margin(9px);
+	// Buzz on hover
 	@include buzz-out;
 
+	// General design
+	@include prefixed(transition, all 2s ease);
 	border-radius: 15px;
 	border: 2px dotted black;
 	opacity: 0;
+}
 
-	-webkit-transition: all 2s ease;
-	-moz-transition: all 2s ease;
-	-ms-transition: all 2s ease;
-	-o-transition: all 2s ease;
+.cat-image-animation {
+	// Run animation on mount
+	@include prefixed(animation, cat-photo-animation 2s 0s 1 linear forwards);
+	pointer-events: none;
+}
+
+.cat-image-animation-over {
+	// Freeze animation after done playing
+	@include margin(15px);
 }

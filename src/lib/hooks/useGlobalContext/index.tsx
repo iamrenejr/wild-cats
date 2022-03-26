@@ -1,7 +1,6 @@
 import { useReducer } from "react";
 
 import { catsApi } from "../../apis";
-
 import { reducer } from "./reducers";
 import {
   SELECT_CAT,
@@ -35,16 +34,17 @@ export const useGlobalContext: UseGlobalContext = () => {
     breed: string,
     breedId: string,
     page: number
-  ) => Promise<void>;
+  ) => Promise<Record<string, unknown>[]>;
   const getCatDataByBreed: GetCatDataByBreed = async (breed, breedId, page) => {
-    const resp = await catsApi.getCatDataByBreed(breedId, page);
+    const thisPage = await catsApi.getCatDataByBreed(breedId, page);
     dispatch({
       type: GET_CAT_DATA_BY_BREED_SUCCESS,
       payload: {
         breed,
-        data: resp.data,
+        data: thisPage.data,
       },
     });
+    return thisPage.data;
   };
 
   return {
