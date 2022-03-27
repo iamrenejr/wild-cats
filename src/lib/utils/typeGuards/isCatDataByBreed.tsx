@@ -1,6 +1,7 @@
 import type { ActionPayload, ICatDataByBreedPayload } from "../../../types";
 
 export const isCatDataByBreed = (
-  state: ActionPayload
-): state is ICatDataByBreedPayload =>
-  (state as ICatDataByBreedPayload).breed !== undefined;
+  data: ActionPayload
+): data is ICatDataByBreedPayload =>
+  (data as ICatDataByBreedPayload).breed !== undefined &&
+  (data as ICatDataByBreedPayload).data !== undefined;
