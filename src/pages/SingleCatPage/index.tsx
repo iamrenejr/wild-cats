@@ -11,18 +11,23 @@ const SingleCatPage = () => {
     state: { selectedCat, catData },
   } = useContext(GlobalContext);
 
+  // Get 'c' from url params to obtain cat ID
   const urlParams = new URLSearchParams(location.search);
   const catId = urlParams.get("c");
 
+  // On press back button, animate leaving single cat page
+  // Pressing via other ways just skips the animation
   const onBack = () => {
     setClassNames("single-cat-page single-cat-page-leaving");
     setTimeout(() => history.back(), 1000);
   };
 
+  // Find the cat's details by ID
   const catDetails = catData?.[selectedCat]?.filter?.(
     (details: UrlRecord) => details.id === catId
   )?.[0];
 
+  // If cat is not found, redirect to home page
   if (catDetails === undefined) {
     location.href = "/?e=1";
     return null;
@@ -35,18 +40,20 @@ const SingleCatPage = () => {
       </Button>
       <div className="cat-portrait-and-information">
         <div className="cat-portrait">
-          <img src={catDetails.url} />
+          <img className="can-grow" src={catDetails.url} />
         </div>
         <div className="cat-information">
           <div className="cat-information-title">
-            <strong>{selectedCat}</strong>
+            <strong className="can-grow">{selectedCat}</strong>
             &nbsp;
-            <i>({catDetails.origin})</i>
+            <i className="can-grow">({catDetails.origin})</i>
           </div>
-          <div className="cat-information-subtitle">
+          <div className="cat-information-subtitle can-grow">
             {catDetails.temperament}
           </div>
-          <div className="cat-information-body">{catDetails.description}</div>
+          <div className="cat-information-body can-grow">
+            {catDetails.description}
+          </div>
         </div>
       </div>
     </div>

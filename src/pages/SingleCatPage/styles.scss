@@ -63,8 +63,8 @@
 	@include border-right-radius(100px);
 
 	max-height: 400px;
-	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 	border: 5px dashed black;
+	z-index: 0;
 }
 
 // Below are the flexbox arrangements to make the cat details
@@ -84,6 +84,7 @@
 	justify-content: center;
 	align-items: center;
 	align-content: center;
+	z-index: 0;
 }
 
 .cat-information {
@@ -93,6 +94,7 @@
 	flex-flow: column wrap;
 	justify-content: center;
 	align-items: center;
+	z-index: 10;
 }
 
 .cat-information-title {
@@ -100,11 +102,13 @@
 	flex-flow: row wrap;
 	justify-content: center;
 	align-items: center;
+	z-index: 10;
 }
 
 // Below are custom typography for cat details
 .cat-information-subtitle {
 	font-size: 12px;
+	z-index: 10;
 }
 
 .cat-information-body {
@@ -117,4 +121,28 @@
 	background-color: #f3921b;
 	color: white;
 	font-size: 18px;
+	z-index: 10;
+}
+
+// Animate the hover by wobbling
+.can-grow:hover {
+	@include wobble-horizontal;
+}
+
+// Animate the portrait shadow disappearing upon hover
+// Animate the portrait shadow appearing upon mouseout
+.cat-portrait > img {
+	@include prefixed(transition, all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1));
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+.cat-portrait > img::after {
+	@include prefixed(transition, all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1));
+
+	opacity: 0;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 0px 0px 0px, rgba(0, 0, 0, 0.3) 0px 0px 0px 0px, rgba(10, 37, 64, 0.35) 0px 0px 0px 0px inset;
+}
+
+.cat-portrait > img::hover::after {
+	opacity: 1;
 }
