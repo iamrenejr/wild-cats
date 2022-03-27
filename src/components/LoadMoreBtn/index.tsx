@@ -20,6 +20,7 @@ export const LoadMoreBtn: LoadMoreBtn = (props) => {
       style={style}
       className={className}
       onClick={onClick}
+      data-testid="load-more-btn"
     >
       {text}
     </Button>

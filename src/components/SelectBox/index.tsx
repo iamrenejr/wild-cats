@@ -22,14 +22,15 @@ export const SelectBox: SelectBox = (props) => {
       className="select-bar"
       onChange={onSelect}
       value={selected}
+      data-testid="select-box"
     >
       {_.isEmpty(selected) ? (
-        <option value="" key="placeholder">
+        <option data-testid="select-box-option" value="" key="placeholder">
           {placeholder}
         </option>
       ) : null}
       {_.values(data).map(({ name }) => (
-        <option value={name} key={name}>
+        <option data-testid="select-box-option" value={name} key={name}>
           {name}
         </option>
       ))}
