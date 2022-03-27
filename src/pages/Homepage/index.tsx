@@ -21,6 +21,7 @@ const Homepage = () => {
     selectCat,
     getCatDataByBreed,
   } = useContext(GlobalContext);
+  console.log("cat data", catData);
 
   const navigate = useNavigate();
 

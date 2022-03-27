@@ -41,14 +41,12 @@ const SingleCatPage = () => {
           <div className="cat-information-title">
             <strong>{selectedCat}</strong>
             &nbsp;
-            <i>({catDetails.breeds[0].origin})</i>
+            <i>({catDetails.origin})</i>
           </div>
           <div className="cat-information-subtitle">
-            {catDetails.breeds[0].temperament}
+            {catDetails.temperament}
           </div>
-          <div className="cat-information-body">
-            {catDetails.breeds[0].description}
-          </div>
+          <div className="cat-information-body">{catDetails.description}</div>
         </div>
       </div>
     </div>

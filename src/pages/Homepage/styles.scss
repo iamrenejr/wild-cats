@@ -51,7 +51,7 @@
 	align-content: flex-end;
 }
 
-.gallery-wrapper > div:nth-child(1) > img {
+.gallery-wrapper > div:last-child > img {
 	max-height: 280px !important;
 	max-width: 280px !important;
 }

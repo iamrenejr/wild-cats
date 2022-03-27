@@ -6,7 +6,7 @@ interface ICatDataByBreedPayload {
 
 // Generic Reducer/Store data types
 type Reducer<S, A> = (prevState: S, action: A) => S;
-type ActionPayload = string | ICatDataByBreedPayload;
+type ActionPayload = string | ICatBreedsData[] | ICatDataByBreedPayload;
 type StoreAction = { type: string; payload?: ActionPayload };
 interface IStoreState {
   selectedCat: string;
@@ -27,9 +27,6 @@ interface IContextValues {
 interface ICatBreedsData {
   id: string;
   name: string;
-  image: {
-    url: string;
-  };
 }
 
 // Items stored under `catData` key of store
@@ -39,7 +36,8 @@ interface ICatDataItem {
   name: string;
   description: string;
   url: string;
-  breeds: Record<string, string>[];
+  origin: string;
+  temperament: string;
 }
 type UrlRecord = Partial<ICatDataItem>;
 

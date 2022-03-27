@@ -26,7 +26,7 @@ const storeBreedData: LocalReducer = (oldState, payload) =>
     : oldState;
 
 const storeCatDataByBreed: LocalReducer = (oldState, payload) =>
-  _.isObject(payload) && _.isString(payload?.breed)
+  _.isObject(payload) && !_.isArray(payload) && _.isString(payload?.breed)
     ? {
         ...oldState,
         catData: {

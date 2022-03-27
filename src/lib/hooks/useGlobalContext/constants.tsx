@@ -1,8 +1,16 @@
 export const initialState = {
   selectedCat: "",
-  breeds: { "": { id: "", name: "", image: { url: "" } } },
+  breeds: { "": { id: "", name: "" } },
   catData: {
-    "": [{ breeds: [], id: "", name: "", description: "", url: "" }],
+    "": [
+      {
+        id: "",
+        name: "",
+        description: "",
+        url: "",
+        origin: "",
+        temperament: "",
+      },
+    ],
   },
-  maxReachedBreeds: { "": false },
 };

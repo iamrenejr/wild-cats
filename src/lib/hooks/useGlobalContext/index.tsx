@@ -1,4 +1,5 @@
 import { useReducer } from "react";
+import _ from "lodash";
 
 import { catsApi } from "../../apis";
 import { reducer } from "./reducers";
@@ -8,6 +9,8 @@ import {
   GET_CAT_DATA_BY_BREED_SUCCESS,
 } from "./actionTypes";
 import { initialState } from "./constants";
+import { getBreedDataFromPayload } from "../../utils/getBreedDataFromPayload";
+import { getCatDataFromPayload } from "../../utils/getCatDataFromPayload";
 
 type UseGlobalContext = () => IContextValues;
 export const useGlobalContext: UseGlobalContext = () => {
@@ -26,7 +29,7 @@ export const useGlobalContext: UseGlobalContext = () => {
     const resp = await catsApi.getBreedData();
     dispatch({
       type: GET_BREED_DATA_SUCCESS,
-      payload: resp.data,
+      payload: _.map(resp.data, getBreedDataFromPayload),
     });
   };
 
@@ -41,7 +44,7 @@ export const useGlobalContext: UseGlobalContext = () => {
       type: GET_CAT_DATA_BY_BREED_SUCCESS,
       payload: {
         breed,
-        data: thisPage.data,
+        data: _.map(thisPage.data, getCatDataFromPayload),
       },
     });
     return thisPage.data;
