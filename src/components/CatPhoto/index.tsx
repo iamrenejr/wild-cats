@@ -3,11 +3,11 @@ import { Image } from "react-bootstrap";
 
 import "./styles.scss";
 
-interface CatPhotoProps {
+interface IProps {
   style?: Style;
   src: string;
 }
-type CatPhoto = (props: CatPhotoProps) => JSX.Element;
+type CatPhoto = (props: IProps) => JSX.Element;
 export const CatPhoto: CatPhoto = (props) => {
   const [opacity, setOpacity] = useState(0);
   const [classNames, setClassNames] = useState("cat-image cat-image-animation");

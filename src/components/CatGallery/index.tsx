@@ -4,12 +4,12 @@ import { Button } from "react-bootstrap";
 import "./styles.scss";
 
 type RenderItemProps = UrlRecord & { style?: Style };
-interface CatGalleryProps {
+interface IProps {
   data: readonly UrlRecord[];
   onViewPhotoDetails: (path: string) => void;
   renderItem: (item: RenderItemProps) => JSX.Element | null;
 }
-type CatGallery = (props: CatGalleryProps) => JSX.Element;
+type CatGallery = (props: IProps) => JSX.Element;
 export const CatGallery: CatGallery = (props) => {
   const { data, onViewPhotoDetails, renderItem } = props;
 

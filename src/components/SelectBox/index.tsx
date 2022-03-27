@@ -2,14 +2,14 @@ import _ from "lodash";
 
 import "./styles.scss";
 
-interface SelectBoxProps {
+interface IProps {
   style?: Style;
   selected: string;
   data: Record<string, ICatBreedsData>;
   onSelect: SelectOnChangeHandler;
   placeholder: string;
 }
-type SelectBox = (props: SelectBoxProps) => JSX.Element;
+type SelectBox = (props: IProps) => JSX.Element;
 export const SelectBox: SelectBox = (props) => {
   const { data, onSelect, placeholder, selected, style } = props;
   return (
