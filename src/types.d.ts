@@ -1,3 +1,5 @@
+// This file stores the app's most important types
+
 // Store action payloads
 interface ICatDataByBreedPayload {
   breed: string;

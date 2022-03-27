@@ -39,6 +39,9 @@ const storeCatDataByBreed: LocalReducer = (oldState, payload) =>
       }
     : oldState;
 
+// This is a normal reducer.
+// It should be consumed by useReducer
+
 type GlobalReducer = Reducer<IStoreState, StoreAction>;
 export const reducer: GlobalReducer = (state, action) => {
   switch (action.type) {

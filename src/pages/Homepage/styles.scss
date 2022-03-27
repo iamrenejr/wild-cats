@@ -1,6 +1,7 @@
 @import "bourbon";
 @import '../../assets/plugins/hover';
 
+// Animate homepage leaving
 @include keyframes(homepage-leaving-animation) {
 	10% {
 		opacity: 1;
@@ -26,6 +27,7 @@
 	@include prefixed(animation, homepage-leaving-animation 1s linear forwards);
 }
 
+// Wrapper around selectbox
 .select-box-wrapper {
 	@include position(relative, null null null null);
 	@include size(100%, 20%);
@@ -36,14 +38,18 @@
 	align-items: center;
 }
 
+// Wrapper around load more button
 .load-more-btn-wrapper {
 	@include margin(0);
 }
 
+// Wrapper around gallery
 .gallery-wrapper {
 	@include position(relative, 0 0 0 0);
 	@include size(100%, 80%);
 
+	// Display the most recent cats on top
+	// The list reversal is done in CSS to save JS from reversing the array on every render
 	display: inline-flex;
 	flex-flow: row-reverse wrap-reverse;
 	justify-content: center;
@@ -51,6 +57,7 @@
 	align-content: flex-end;
 }
 
+// Dynamically change sizes of gallery photos by their positon on the list
 .gallery-wrapper > div:last-child > img {
 	max-height: 280px !important;
 	max-width: 280px !important;

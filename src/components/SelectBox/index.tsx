@@ -12,6 +12,8 @@ interface IProps {
 type SelectBox = (props: IProps) => JSX.Element;
 export const SelectBox: SelectBox = (props) => {
   const { data, onSelect, placeholder, selected, style } = props;
+
+  // Remove placeholder from the list if data is present
   return (
     <select
       style={style}

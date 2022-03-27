@@ -1,3 +1,4 @@
+// Strip away other information except what ICatDataItem requires
 interface IPayload {
   id: string;
   url: string;
@@ -5,8 +6,8 @@ interface IPayload {
 }
 type GetCatDataFromPayload = (payload: IPayload) => ICatDataItem;
 export const getCatDataFromPayload: GetCatDataFromPayload = (payload) => ({
-  id: payload.id,
-  url: payload.url,
+  id: payload?.id,
+  url: payload?.url,
   name: payload?.breeds?.[0]?.name,
   origin: payload?.breeds?.[0]?.origin,
   description: payload?.breeds?.[0]?.description,

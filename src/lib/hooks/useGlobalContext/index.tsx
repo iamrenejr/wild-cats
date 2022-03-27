@@ -12,6 +12,9 @@ import { initialState } from "./constants";
 import { getBreedDataFromPayload } from "../../utils/getBreedDataFromPayload";
 import { getCatDataFromPayload } from "../../utils/getCatDataFromPayload";
 
+// This hook replicates redux functionality using useReducer
+// The state and its actions must be stored in a React Context
+
 type UseGlobalContext = () => IContextValues;
 export const useGlobalContext: UseGlobalContext = () => {
   const [state, dispatch] = useReducer(reducer, initialState);

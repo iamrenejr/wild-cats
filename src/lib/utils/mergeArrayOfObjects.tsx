@@ -1,5 +1,6 @@
 import _ from "lodash";
 
+// FULL OUTER JOIN two objects using their shared IDs
 type MergeCatDataItemsById<U> = (arr1: U, arr2: U) => U;
 export const mergeCatDataItemsById: MergeCatDataItemsById<ICatDataItem[]> = (
   oldState,

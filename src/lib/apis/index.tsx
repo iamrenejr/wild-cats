@@ -2,6 +2,8 @@ import axios, { AxiosResponse, Method } from "axios";
 
 import { cats } from "./cats";
 
+// Implement wrapper around axios to decouple the app from it
+// Also allow DRY use of the API which can otherwise be repetitive
 export type CallApi = (
   method: Method,
   path: string,

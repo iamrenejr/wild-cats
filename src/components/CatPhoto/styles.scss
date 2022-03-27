@@ -1,6 +1,7 @@
 @import 'bourbon';
 @import '../../assets/plugins/hover';
 
+// Animate entry of cat photo
 @include keyframes(cat-photo-animation) {
 	10% {
 		@include margin(2px);
@@ -19,20 +20,24 @@
 	// Buzz on hover
 	@include buzz-out;
 
-	// General design
+	// General animation transition parameters
 	@include prefixed(transition, all 2s ease);
+
+	// General design
 	border-radius: 15px;
 	border: 2px dotted black;
 	opacity: 0;
 }
 
+// Run animation on mount
 .cat-image-animation {
-	// Run animation on mount
 	@include prefixed(animation, cat-photo-animation 2s linear forwards);
+
+	// Disable :hover during animation
 	pointer-events: none;
 }
 
+// Freeze animation after done playing
 .cat-image-animation-over {
-	// Freeze animation after done playing
 	@include margin(15px);
 }

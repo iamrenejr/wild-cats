@@ -3,6 +3,7 @@
 
 $full-margin: 20px;
 
+// Animate entry of load more button
 @include keyframes(load-more-btn-animation) {
 	0% {
 		@include size(0);
@@ -34,6 +35,7 @@ $full-margin: 20px;
 	border-radius: 10px;
 }
 
+// Animate leaving of load more button
 @include keyframes(load-more-btn-leaving-animation) {
 	0% {
 		@include size(110px, 40px);

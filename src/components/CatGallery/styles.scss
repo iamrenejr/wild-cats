@@ -8,16 +8,22 @@
 }
 
 .gallery-item > button {
+	// General animation transition parameters
 	@include prefixed(transition, all 0.5s ease);
 
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: flex-start;
+
+	// Hide the button normally, but let it take space in the DOM
+	// This both gives us a dynamic-looking vertical spacing (due to
+	// the invisible button) and gives us another animation chance
 	visibility: hidden;
 	opacity: 0;
 }
 
 // Follow the hover state of the gallery item parent
+// This allows the button to appear when the cat is hovered
 .gallery-item:hover > button {
 	visibility: visible;
 	opacity: 1;
