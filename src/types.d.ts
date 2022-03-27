@@ -10,7 +10,11 @@ interface ICatDataByBreedPayload {
 
 // Generic Reducer/Store data types
 type Reducer<S, A> = (prevState: S, action: A) => S;
-type ActionPayload = string | ICatBreedsData[] | ICatDataByBreedPayload;
+type ActionPayload =
+  | string
+  | ICatBreedsData[]
+  | ICatDataByBreedPayload
+  | IStoreState;
 type StoreAction = { type: string; payload?: ActionPayload };
 interface IStoreState {
   selectedCat: string;

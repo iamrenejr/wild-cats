@@ -29,9 +29,8 @@ const SingleCatPage = () => {
     (details: UrlRecord) => details.id === catId
   )?.[0];
 
-  // If cat is not found, redirect to home page
+  // If cat is not found, render nothing
   if (catDetails === undefined) {
-    location.href = "/?e=1";
     return null;
   }
 

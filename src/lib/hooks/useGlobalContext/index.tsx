@@ -7,12 +7,14 @@ import {
   SELECT_CAT,
   GET_BREED_DATA_SUCCESS,
   GET_CAT_DATA_BY_BREED_SUCCESS,
+  REPLACE_STATE,
 } from "./actionTypes";
 import { initialState } from "./constants";
 import { getBreedDataFromPayload } from "../../utils/getBreedDataFromPayload";
 import { getCatDataFromPayload } from "../../utils/getCatDataFromPayload";
 
 import type { IContextValues } from "../../../types";
+import { usePersistInLocalStorage } from "../usePersistInLocalStorage";
 
 // This hook replicates redux functionality using useReducer
 // The state and its actions must be stored in a React Context
@@ -69,6 +71,16 @@ export const useGlobalContext: UseGlobalContext = () => {
       throw new Error("Unexpected error in getCatDataByBreed");
     }
   };
+
+  // This hook persists the whole store in localStorage
+  // If that fails while the app is freshly started (eg due to corrupted store),
+  // it resets the whole store
+  usePersistInLocalStorage(state, initialState, (newState) => {
+    dispatch({
+      type: REPLACE_STATE,
+      payload: newState,
+    });
+  });
 
   return {
     state,

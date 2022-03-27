@@ -107,8 +107,13 @@
 
 // Below are custom typography for cat details
 .cat-information-subtitle {
+	@include prefixer(mix-blend-mode, exclusion, ("webkit", "moz"));
+	@include padding(2px 15px);
+
 	font-size: 12px;
 	z-index: 10;
+	border-radius: 15px;
+	background-color: rgba(200, 100, 255, 0.1);
 }
 
 .cat-information-body {

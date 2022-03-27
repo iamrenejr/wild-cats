@@ -5,6 +5,7 @@ import {
   SELECT_CAT,
   GET_BREED_DATA_SUCCESS,
   GET_CAT_DATA_BY_BREED_SUCCESS,
+  REPLACE_STATE,
 } from "./actionTypes";
 
 import type {
@@ -13,6 +14,9 @@ import type {
   ActionPayload,
   StoreAction,
 } from "../../../types";
+
+import { isStoreState } from "../../utils/typeGuards/isStoreState";
+import { isCatDataByBreed } from "../../utils/typeGuards/isCatDataByBreed";
 
 type LocalReducer = Reducer<IStoreState, ActionPayload>;
 
@@ -33,7 +37,7 @@ const storeBreedData: LocalReducer = (oldState, payload) =>
     : oldState;
 
 const storeCatDataByBreed: LocalReducer = (oldState, payload) =>
-  _.isObject(payload) && !_.isArray(payload) && _.isString(payload?.breed)
+  isCatDataByBreed(payload)
     ? {
         ...oldState,
         catData: {
@@ -45,6 +49,9 @@ const storeCatDataByBreed: LocalReducer = (oldState, payload) =>
         },
       }
     : oldState;
+
+const replaceState: LocalReducer = (oldState, payload) =>
+  isStoreState(payload) ? payload : oldState;
 
 // This is a normal reducer.
 // It should be consumed by useReducer
@@ -67,6 +74,12 @@ export const reducer: GlobalReducer = (state, action) => {
     case GET_CAT_DATA_BY_BREED_SUCCESS: {
       if (action?.payload !== undefined) {
         return storeCatDataByBreed(state, action.payload);
+      }
+      return state;
+    }
+    case REPLACE_STATE: {
+      if (action?.payload !== undefined) {
+        return replaceState(state, action.payload);
       }
       return state;
     }
