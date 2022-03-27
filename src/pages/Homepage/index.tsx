@@ -20,27 +20,40 @@ const Homepage = () => {
   const [page, setPage] = useState(1);
   const [showLoadBtn, setShowLoadBtn] = useState(true);
   const [classNames, setClassNames] = useState("homepage");
+  const [showErrorToast, setShowErrorToast] = useState(false);
   const {
     state: { selectedCat, breeds, catData },
-    getBreedData,
     selectCat,
+    getBreedData,
     getCatDataByBreed,
   } = useContext(GlobalContext);
 
   const navigate = useNavigate();
 
   // On mount, populate the select bar options
-  useEffect(getBreedData, []);
+  useEffect(() => {
+    (async () => {
+      try {
+        await getBreedData();
+      } catch {
+        setShowErrorToast(true);
+      }
+    })();
+  }, []);
 
   // On choosing a breed from select bar
-  const onSelect: SelectOnChangeHandler = (ev) => {
-    const newPage = 1;
-    const name = ev.target.value;
-    const { id: breedId } = breeds[name];
-    selectCat(name);
-    getCatDataByBreed(name, breedId, newPage);
-    setPage(newPage);
-    setShowLoadBtn(true);
+  const onSelect: SelectOnChangeHandler = async (ev) => {
+    try {
+      const newPage = 1;
+      const name = ev.target.value;
+      const { id: breedId } = breeds[name];
+      selectCat(name);
+      setPage(newPage);
+      setShowLoadBtn(true);
+      await getCatDataByBreed(name, breedId, newPage);
+    } catch {
+      setShowErrorToast(true);
+    }
   };
 
   // imgs is the raw data for the gallery
@@ -49,21 +62,25 @@ const Homepage = () => {
 
   // On loading more images of cats
   const onLoadMore = async () => {
-    const newPage = page + 1;
-    setPage(newPage);
+    try {
+      const newPage = page + 1;
+      setPage(newPage);
 
-    const { id: breedId } = breeds[selectedCat];
-    const newCatData = await getCatDataByBreed(selectedCat, breedId, newPage);
-    const newCats =
-      _.differenceBy(
-        imgs.map((x: UrlRecord) => x.id),
-        newCatData.map((x: UrlRecord) => x.id),
-        "id"
-      ) || [];
+      const { id: breedId } = breeds[selectedCat];
+      const newCatData = await getCatDataByBreed(selectedCat, breedId, newPage);
+      const newCats =
+        _.differenceBy(
+          imgs.map((x: UrlRecord) => x.id),
+          newCatData.map((x: UrlRecord) => x.id),
+          "id"
+        ) || [];
 
-    // If there are no more new cats, hide load button
-    if (newCats.length === 0) {
-      setShowLoadBtn(false);
+      // If there are no more new cats, hide load button
+      if (newCats.length === 0) {
+        setShowLoadBtn(false);
+      }
+    } catch {
+      setShowErrorToast(true);
     }
   };
 
@@ -92,7 +109,7 @@ const Homepage = () => {
 
   return (
     <div className={classNames}>
-      {fromError ? (
+      {fromError || showErrorToast ? (
         <ToastBox
           text="Apologies but we could not load new cats for you at this time! Miau!"
           onClose={onToastClose}
