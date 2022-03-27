@@ -1,4 +1,6 @@
-export const initialState = {
+import type { IStoreState } from "../../../types";
+
+export const initialState: IStoreState = {
   selectedCat: "",
   breeds: { "": { id: "", name: "" } },
   catData: {

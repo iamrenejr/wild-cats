@@ -2,6 +2,7 @@
 
 .select-bar {
 	@include margin(0);
+	@include padding(null 10px);
 	@include size(200px, 40px);
 	@include position(relative, 0 0 0 0);
 	@include border-color(null null #abefcd null);

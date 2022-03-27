@@ -7,6 +7,13 @@ import {
   GET_CAT_DATA_BY_BREED_SUCCESS,
 } from "./actionTypes";
 
+import type {
+  Reducer,
+  IStoreState,
+  ActionPayload,
+  StoreAction,
+} from "../../../types";
+
 type LocalReducer = Reducer<IStoreState, ActionPayload>;
 
 const selectCat: LocalReducer = (oldState, payload) =>

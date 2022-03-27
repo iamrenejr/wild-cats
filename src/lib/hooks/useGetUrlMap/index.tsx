@@ -1,6 +1,8 @@
 import { useMemo } from "react";
 import _ from "lodash";
 
+import type { UrlRecord } from "../../../types";
+
 // Strip away other objects from the prop to leave just id and url
 type GetUrlProp = (record: UrlRecord) => UrlRecord;
 const getUrlProp: GetUrlProp = ({ id, url }) => ({ id, url });

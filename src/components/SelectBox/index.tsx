@@ -1,5 +1,7 @@
 import _ from "lodash";
 
+import type { ICatBreedsData, SelectOnChangeHandler, Style } from "../../types";
+
 import "./styles.scss";
 
 interface IProps {

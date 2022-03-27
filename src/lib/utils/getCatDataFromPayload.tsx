@@ -1,3 +1,5 @@
+import type { ICatDataItem } from "../../types";
+
 // Strip away other information except what ICatDataItem requires
 interface IPayload {
   id: string;

@@ -1,5 +1,7 @@
 import { Button } from "react-bootstrap";
 
+import type { Style } from "../../types";
+
 import "./styles.scss";
 
 interface IProps {

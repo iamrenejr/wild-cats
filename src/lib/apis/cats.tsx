@@ -1,13 +1,13 @@
-import { AxiosResponse } from "axios";
-
 import type { CallApi } from "./";
 import { PAGE_SIZE } from "../constants";
+
+import type { NetworkResult } from "../../types";
 
 // The app should only talk to the cats API in a way
 // that agrees with ICatsApi
 interface ICatsApi {
-  getBreedData: () => Promise<AxiosResponse>;
-  getCatDataByBreed: (breedId: string, page: number) => Promise<AxiosResponse>;
+  getBreedData: () => NetworkResult;
+  getCatDataByBreed: (breedId: string, page: number) => NetworkResult;
 }
 type Cats = (callApi: CallApi) => ICatsApi;
 export const cats: Cats = (callApi) => ({

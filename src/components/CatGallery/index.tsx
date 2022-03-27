@@ -1,6 +1,8 @@
 import { Button } from "react-bootstrap";
 import _ from "lodash";
 
+import type { Style, UrlRecord } from "../../types";
+
 import "./styles.scss";
 
 type RenderItemProps = UrlRecord & { style?: Style };

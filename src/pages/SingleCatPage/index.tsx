@@ -6,6 +6,8 @@ import "./styles.scss";
 import { getUrlParam } from "../../lib/utils/getUrlParam";
 import { GlobalContext } from "../../lib/hooks/useGlobalContext/context";
 
+import type { UrlRecord } from "../../types";
+
 const SingleCatPage = () => {
   const [classNames, setClassNames] = useState("single-cat-page");
   const {

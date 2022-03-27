@@ -1,5 +1,7 @@
 // This file stores the app's most important types
 
+import { AxiosResponse } from "axios";
+
 // Store action payloads
 interface ICatDataByBreedPayload {
   breed: string;
@@ -19,7 +21,7 @@ interface IStoreState {
 // Context values interface
 interface IContextValues {
   state: IStoreState;
-  selectCat: function;
+  selectCat: (cat: string) => void;
   getBreedData: function;
   getCatDataByBreed: function;
 }
@@ -48,3 +50,6 @@ type SelectOnChangeHandler = (ev: ChangeEvent<HTMLSelectElement>) => void;
 
 // Common Component prop data types
 type Style = Record<string, string | number>;
+
+// Common API types
+type NetworkResult = Promise<AxiosResponse | Error>;

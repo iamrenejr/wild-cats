@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Image } from "react-bootstrap";
 
+import type { Style } from "../../types";
+
 import "./styles.scss";
 
 interface IProps {

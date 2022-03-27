@@ -14,6 +14,7 @@ import { LoadMoreBtn } from "../../components/LoadMoreBtn";
 import { ToastBox } from "../../components/ToastBox";
 
 import type { RenderItem } from "../../components/CatGallery";
+import type { SelectOnChangeHandler, UrlRecord } from "../../types";
 
 const Homepage = () => {
   const [page, setPage] = useState(1);

@@ -12,6 +12,8 @@ import { initialState } from "./constants";
 import { getBreedDataFromPayload } from "../../utils/getBreedDataFromPayload";
 import { getCatDataFromPayload } from "../../utils/getCatDataFromPayload";
 
+import type { IContextValues } from "../../../types";
+
 // This hook replicates redux functionality using useReducer
 // The state and its actions must be stored in a React Context
 
@@ -29,11 +31,19 @@ export const useGlobalContext: UseGlobalContext = () => {
 
   type GetBreedData = () => Promise<void>;
   const getBreedData: GetBreedData = async () => {
-    const resp = await catsApi.getBreedData();
-    dispatch({
-      type: GET_BREED_DATA_SUCCESS,
-      payload: _.map(resp.data, getBreedDataFromPayload),
-    });
+    try {
+      const resp = await catsApi.getBreedData();
+      if (resp instanceof Error) {
+        throw new Error(resp?.message);
+      }
+
+      dispatch({
+        type: GET_BREED_DATA_SUCCESS,
+        payload: _.map(resp?.data, getBreedDataFromPayload),
+      });
+    } catch {
+      throw new Error("Unexpected error in getBreedData");
+    }
   };
 
   type GetCatDataByBreed = (
@@ -42,15 +52,22 @@ export const useGlobalContext: UseGlobalContext = () => {
     page: number
   ) => Promise<Record<string, unknown>[]>;
   const getCatDataByBreed: GetCatDataByBreed = async (breed, breedId, page) => {
-    const thisPage = await catsApi.getCatDataByBreed(breedId, page);
-    dispatch({
-      type: GET_CAT_DATA_BY_BREED_SUCCESS,
-      payload: {
-        breed,
-        data: _.map(thisPage.data, getCatDataFromPayload),
-      },
-    });
-    return thisPage.data;
+    try {
+      const resp = await catsApi.getCatDataByBreed(breedId, page);
+      if (resp instanceof Error) {
+        throw new Error(resp?.message);
+      }
+      dispatch({
+        type: GET_CAT_DATA_BY_BREED_SUCCESS,
+        payload: {
+          breed,
+          data: _.map(resp.data, getCatDataFromPayload),
+        },
+      });
+      return resp.data;
+    } catch {
+      throw new Error("Unexpected error in getCatDataByBreed");
+    }
   };
 
   return {
