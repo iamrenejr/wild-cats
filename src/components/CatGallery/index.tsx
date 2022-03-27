@@ -10,10 +10,27 @@ interface IProps {
   data: readonly UrlRecord[];
   onViewPhotoDetails: (path: string) => void;
   renderItem: RenderItem;
+  isLoading: boolean;
 }
 type CatGallery = (props: IProps) => JSX.Element;
 export const CatGallery: CatGallery = (props) => {
-  const { data, onViewPhotoDetails, renderItem } = props;
+  const { data, isLoading, onViewPhotoDetails, renderItem } = props;
+
+  // Handle loading og the gallery
+  // Handle when no images are found
+  const noImageData = !isLoading && data.length === 0;
+  if (isLoading || noImageData) {
+    const loadingClassName = isLoading ? "loader-fade-in" : "hidden";
+    const noDataClassName = noImageData ? "no-data-fade-in" : "hidden";
+    return (
+      <>
+        <div className={loadingClassName}>
+          <div />
+        </div>
+        <div className={noDataClassName}>No cats found!</div>
+      </>
+    );
+  }
 
   // The gallery applies a standard look to the passed-in prop
   // by wrapping each one with the same container

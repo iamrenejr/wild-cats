@@ -43,7 +43,8 @@ const Homepage = () => {
   };
 
   // imgs is the raw data for the gallery
-  const imgs = useGetUrlMap(catData[selectedCat] || []);
+  const imgMap = catData[selectedCat];
+  const imgs = useGetUrlMap(imgMap || []);
 
   // On loading more images of cats
   const onLoadMore = async () => {
@@ -119,6 +120,7 @@ const Homepage = () => {
             data={imgs}
             renderItem={renderGalleryPhoto}
             onViewPhotoDetails={onViewPhotoDetails}
+            isLoading={imgMap === undefined}
           />
         </div>
       )}

@@ -1,4 +1,6 @@
-@import "../../assets/plugins/hover";
+@import "bourbon";
+@import '../../assets/plugins/hover';
+@import '../../assets/plugins/spinner';
 
 .gallery-item {
 	display: flex;
@@ -27,4 +29,34 @@
 .gallery-item:hover > button {
 	visibility: visible;
 	opacity: 1;
+}
+
+// Gently introduce loading animation
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+.loader-fade-in {
+	@extend .lds-circle;
+	@include prefixed(animation, fade-in 0.5s linear forwards);
+
+	opacity: 0;
+}
+
+.loader-fade-in > div {
+	@include size(4vh);
+
+	background: #2591ef;
+}
+
+.no-data-fade-in {
+	@include prefixed(animation, fade-in 1s linear forwards);
+}
+
+.hidden {
+	display: none;
 }
