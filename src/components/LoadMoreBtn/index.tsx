@@ -12,7 +12,6 @@ type LoadMoreBtn = (props: LoadMoreBtnProps) => JSX.Element;
 export const LoadMoreBtn: LoadMoreBtn = (props) => {
   const { onClick, style, text, visible } = props;
   const className = visible ? "load-more-btn" : "load-more-btn-leaving";
-  console.log("class name", className);
   return (
     <Button
       variant="outline-primary"

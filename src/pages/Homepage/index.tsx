@@ -1,4 +1,5 @@
 import { memo, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import _ from "lodash/fp";
 
 import "./styles.scss";
@@ -11,6 +12,7 @@ import { SelectBox } from "../../components/SelectBox";
 import { LoadMoreBtn } from "../../components/LoadMoreBtn";
 
 const Homepage = () => {
+  const [classNames, setClassNames] = useState("homepage");
   const [page, setPage] = useState(1);
   const [showLoadBtn, setShowLoadBtn] = useState(true);
   const {
@@ -19,6 +21,8 @@ const Homepage = () => {
     selectCat,
     getCatDataByBreed,
   } = useContext(GlobalContext);
+
+  const navigate = useNavigate();
 
   useEffect(getBreedData, []);
 
@@ -42,7 +46,7 @@ const Homepage = () => {
     const newCatData = await getCatDataByBreed(selectedCat, breedId, newPage);
     const newCats =
       _.differenceBy(
-        imgs.map((x) => x.id),
+        imgs.map((x: UrlRecord) => x.id),
         newCatData.map((x: UrlRecord) => x.id),
         "id"
       ) || [];
@@ -52,7 +56,7 @@ const Homepage = () => {
   };
 
   return (
-    <div className="homepage">
+    <div className={classNames}>
       <div className="select-box-wrapper">
         <SelectBox
           data={breeds}
@@ -73,12 +77,16 @@ const Homepage = () => {
       {_.isEmpty(selectedCat) ? null : (
         <div className="gallery-wrapper">
           <CatGallery
-            data={_.reverse(imgs)}
+            data={imgs}
             renderItem={({ id, url, style }) =>
               _.isString(url) ? (
                 <CatPhoto style={style} src={url} key={id} />
               ) : null
             }
+            onViewPhotoDetails={(path) => {
+              setClassNames("homepage homepage-leaving");
+              setTimeout(() => navigate(path), 1000);
+            }}
           />
         </div>
       )}

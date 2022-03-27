@@ -61,7 +61,7 @@ $full-margin: 20px;
 	@include margin(0);
 	@include prefixed(
 		animation,
-		load-more-btn-leaving-animation 1s 0s 1 linear forwards
+		load-more-btn-leaving-animation 1s linear forwards
 	);
 	border-radius: 10px;
 }

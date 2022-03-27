@@ -1,0 +1,113 @@
+@import 'bourbon';
+@import '../../assets/plugins/hover';
+
+@include keyframes(single-cat-page-animation) {
+	0% {
+		opacity: 0;
+		top: 20%;
+	}
+
+	70% {
+		opacity: 1;
+		top: 0;
+		bottom: 0;
+	}
+
+	100% {
+		opacity: 1;
+		top: 0;
+		bottom: 0;
+	}
+}
+
+.single-cat-page {
+	@include position(relative, null null null null);
+	@include size(100%);
+	@include prefixed(animation, single-cat-page-animation 1s linear forwards);
+
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+@include keyframes(single-cat-page-leaving-animation) {
+	0% {
+		opacity: 1;
+		top: 0;
+		bottom: 0;
+	}
+
+	70% {
+		opacity: 1;
+		top: 0;
+		bottom: 0;
+	}
+
+	100% {
+		opacity: 0;
+		top: 20%;
+	}
+}
+
+.single-cat-page-leaving {
+	@include prefixed(animation, single-cat-page-leaving-animation 1s linear forwards);
+	opacity: 1;
+}
+
+.cat-portrait-and-information {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.cat-portrait {
+	@include size(40%, 500px);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+
+.cat-portrait > img {
+	@include border-top-radius(100px);
+	@include border-right-radius(100px);
+
+	max-height: 400px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+	border: 5px dashed black;
+}
+
+.cat-information {
+	@include size(40%, 500px);
+
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.cat-information-title {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.cat-information-subtitle {
+	font-size: 12px;
+}
+
+.cat-information-body {
+	@include size(550px, auto);
+	@include padding(50px);
+	@include margin(10px);
+	@include border-bottom-radius(100px);
+	@include border-left-radius(100px);
+
+	background-color: #f3921b;
+	color: white;
+	font-size: 18px;
+}

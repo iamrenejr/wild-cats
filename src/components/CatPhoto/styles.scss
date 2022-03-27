@@ -28,7 +28,7 @@
 
 .cat-image-animation {
 	// Run animation on mount
-	@include prefixed(animation, cat-photo-animation 2s 0s 1 linear forwards);
+	@include prefixed(animation, cat-photo-animation 2s linear forwards);
 	pointer-events: none;
 }
 

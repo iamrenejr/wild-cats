@@ -1,8 +1,29 @@
 @import "bourbon";
+@import '../../assets/plugins/hover';
+
+@include keyframes(homepage-leaving-animation) {
+	10% {
+		opacity: 1;
+		bottom: 0;
+	}
+
+	30% {
+		opacity: 0;
+		bottom: 10%;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
 
 .homepage {
 	@include position(relative, null null null null);
 	@include size(100%);
+}
+
+.homepage-leaving {
+	@include prefixed(animation, homepage-leaving-animation 1s linear forwards);
 }
 
 .select-box-wrapper {
@@ -24,10 +45,10 @@
 	@include size(100%, 80%);
 
 	display: inline-flex;
-	flex-flow: row wrap;
+	flex-flow: row-reverse wrap-reverse;
 	justify-content: center;
 	align-items: center;
-	align-content: flex-start;
+	align-content: flex-end;
 }
 
 .gallery-wrapper > div:nth-child(1) > img {

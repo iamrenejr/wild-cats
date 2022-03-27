@@ -39,6 +39,7 @@ interface ICatDataItem {
   name: string;
   description: string;
   url: string;
+  breeds: Record<string, string>[];
 }
 type UrlRecord = Partial<ICatDataItem>;
 

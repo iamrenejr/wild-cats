@@ -2,7 +2,7 @@ export const initialState = {
   selectedCat: "",
   breeds: { "": { id: "", name: "", image: { url: "" } } },
   catData: {
-    "": [{ id: "", name: "", description: "", url: "" }],
+    "": [{ breeds: [], id: "", name: "", description: "", url: "" }],
   },
   maxReachedBreeds: { "": false },
 };
