@@ -1,0 +1,28 @@
+@import "bourbon";
+
+.toast-box {
+	@include position(absolute, 30% 0 0 0);
+	@include size(30vw, 20vh);
+
+	margin: 0 auto;
+	z-index: 999;
+	overflow: hidden;
+}
+
+.toast-header {
+	height: 5vh;
+}
+
+.toast-title {
+	color: red;
+	font-size: 1.5vw;
+}
+
+.toast-time-ago {
+	font-size: 0.8vw;
+}
+
+.toast-body {
+	font-size: 1.2vw;
+	min-height: 50px;
+}

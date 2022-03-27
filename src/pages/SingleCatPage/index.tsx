@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 
 import "./styles.scss";
 
+import { getUrlParam } from "../../lib/utils/getUrlParam";
 import { GlobalContext } from "../../lib/hooks/useGlobalContext/context";
 
 const SingleCatPage = () => {
@@ -12,8 +13,7 @@ const SingleCatPage = () => {
   } = useContext(GlobalContext);
 
   // Get 'c' from url params to obtain cat ID
-  const urlParams = new URLSearchParams(location.search);
-  const catId = urlParams.get("c");
+  const catId = getUrlParam("c");
 
   // On press back button, animate leaving single cat page
   // Pressing via other ways just skips the animation

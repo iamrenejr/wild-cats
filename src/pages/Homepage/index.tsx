@@ -4,12 +4,14 @@ import _ from "lodash/fp";
 
 import "./styles.scss";
 
+import { getUrlParam } from "../../lib/utils/getUrlParam";
 import { useGetUrlMap } from "../../lib/hooks/useGetUrlMap";
 import { GlobalContext } from "../../lib/hooks/useGlobalContext/context";
 import { CatPhoto } from "../../components/CatPhoto";
 import { CatGallery } from "../../components/CatGallery";
 import { SelectBox } from "../../components/SelectBox";
 import { LoadMoreBtn } from "../../components/LoadMoreBtn";
+import { ToastBox } from "../../components/ToastBox";
 
 import type { RenderItem } from "../../components/CatGallery";
 
@@ -76,8 +78,24 @@ const Homepage = () => {
   const renderGalleryPhoto: RenderItem = ({ id, url, style }) =>
     _.isString(url) ? <CatPhoto style={style} src={url} key={id} /> : null;
 
+  // Get 'e' from url params to obtain error
+  const fromError = getUrlParam("e");
+
+  // Reset the app on close of error message
+  const onToastClose = () => {
+    setTimeout(() => {
+      location.href = "/";
+    }, 500);
+  };
+
   return (
     <div className={classNames}>
+      {fromError ? (
+        <ToastBox
+          text="Apologies but we could not load new cats for you at this time! Miau!"
+          onClose={onToastClose}
+        />
+      ) : null}
       <div className="select-box-wrapper">
         <SelectBox
           data={breeds}
