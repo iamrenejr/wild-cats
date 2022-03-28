@@ -9,4 +9,5 @@ This is a cat gallery built in ReactJS and Typescript. It pulls data from TheCat
 * Has loading state (spinner)
 * "No data" state when no cat images are found
 * Persistent state - lasts through localStorage
+* Handling of non-existent paths
 * CSS Animations and flexbox layout (for aesthetics)
