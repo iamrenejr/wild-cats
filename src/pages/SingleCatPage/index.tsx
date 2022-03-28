@@ -35,7 +35,7 @@ const SingleCatPage = () => {
   }
 
   return (
-    <div className={classNames}>
+    <div data-testid="single-cat-page-root" className={classNames}>
       <Button variant="dark" onClick={onBack}>
         Back
       </Button>

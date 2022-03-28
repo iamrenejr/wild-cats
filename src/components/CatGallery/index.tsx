@@ -9,7 +9,7 @@ type RenderItemProps = UrlRecord & { style?: Style };
 export type RenderItem = (item: RenderItemProps) => JSX.Element | null;
 
 interface IProps {
-  data: readonly UrlRecord[];
+  data: readonly UrlRecord[] | [];
   onViewPhotoDetails: (path: string) => void;
   renderItem: RenderItem;
   isLoading: boolean;
@@ -26,10 +26,12 @@ export const CatGallery: CatGallery = (props) => {
     const noDataClassName = noImageData ? "no-data-fade-in" : "hidden";
     return (
       <>
-        <div className={loadingClassName}>
+        <div data-testid="loader" className={loadingClassName}>
           <div />
         </div>
-        <div className={noDataClassName}>No cats found!</div>
+        <div data-testid="no-data-msg" className={noDataClassName}>
+          No cats found!
+        </div>
       </>
     );
   }
@@ -41,9 +43,13 @@ export const CatGallery: CatGallery = (props) => {
     const onPress = (path: string) => () => onViewPhotoDetails(path);
 
     return (
-      <div key={id} className="gallery-item">
+      <div data-testid="gallery-item" key={id} className="gallery-item">
         {renderItem({ id, url })}
-        <Button onClick={onPress(`/single-cat-page?c=${id}`)} variant="primary">
+        <Button
+          data-testid="gallery-item-btn"
+          onClick={onPress(`/single-cat-page?c=${id}`)}
+          variant="primary"
+        >
           View details
         </Button>
       </div>

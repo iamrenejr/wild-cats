@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import Homepage from "./";
 
 import { MemoryRouter } from "react-router-dom";
@@ -10,7 +10,7 @@ describe("Homepage", () => {
   );
   const BrowserRouter = MockBrowserRouter;
 
-  it("should render the select bar", () => {
+  it("should render the homepage", () => {
     const { getByTestId } = render(
       <BrowserRouter>
         <Homepage />

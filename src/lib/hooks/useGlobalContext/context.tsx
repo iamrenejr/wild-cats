@@ -5,7 +5,7 @@ import { initialState } from "./constants";
 
 import type { IContextValues } from "../../../types";
 
-const initialContext: IContextValues = {
+export const initialContext: IContextValues = {
   state: initialState,
   selectCat: _.noop,
   getBreedData: _.noop,

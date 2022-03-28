@@ -5,14 +5,17 @@
 @include keyframes(cat-photo-animation) {
 	10% {
 		@include margin(2px);
+		opacity: 0;
 	}
 
 	50% {
 		@include margin(12px);
+		opacity: 0.3;
 	}
 
 	100% {
 		@include margin(15px);
+		opacity: 1;
 	}
 }
 
@@ -40,4 +43,5 @@
 // Freeze animation after done playing
 .cat-image-animation-over {
 	@include margin(15px);
+	opacity: 1;
 }

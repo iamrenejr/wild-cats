@@ -29,7 +29,12 @@ export const ToastBox: ToastBox = (props) => {
   };
   const timeAgoText = getTimeAgoText(timeDiff);
   return (
-    <Toast className="toast-box" show={visible} onClose={onClose}>
+    <Toast
+      data-testid="toast-box"
+      className="toast-box"
+      show={visible}
+      onClose={onClose}
+    >
       <Toast.Header className="toast-header">
         <strong className="me-auto toast-title">Error</strong>
         <small className="toast-time-ago">{timeAgoText}</small>

@@ -11,7 +11,6 @@ interface IProps {
 }
 type CatPhoto = (props: IProps) => JSX.Element;
 export const CatPhoto: CatPhoto = (props) => {
-  const [opacity, setOpacity] = useState(0);
   const [classNames, setClassNames] = useState("cat-image cat-image-animation");
   const { src, style } = props;
 
@@ -24,9 +23,9 @@ export const CatPhoto: CatPhoto = (props) => {
   return (
     <Image
       src={src}
-      style={{ ...style, opacity }}
+      style={style}
       className={classNames}
-      onLoad={() => setOpacity(1)}
+      data-testid="cat-photo"
     />
   );
 };

@@ -2,11 +2,24 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import { SelectBox } from "./";
 
 describe("Select Box", () => {
+  const placeholderText = "placeholder";
+
+  const twoOptions = {
+    cat1: { id: "cat1", name: "Option1" },
+    cat2: { id: "cat2", name: "Option2" },
+  };
+
+  const threeOptions = {
+    Option1: { id: "Option1", name: "Option1" },
+    Option2: { id: "Option2", name: "Option2" },
+    Option3: { id: "Option3", name: "Option3" },
+  };
+
   it("should render the select bar", () => {
     const { getByTestId } = render(
       <SelectBox
         selected=""
-        data={{ cat1: { id: "cat1", name: "Option1" } }}
+        data={twoOptions}
         onSelect={jest.fn()}
         placeholder="Placeholder"
       />
@@ -16,15 +29,10 @@ describe("Select Box", () => {
   });
 
   it("should have the placeholder selected by default", () => {
-    const placeholderText = "placeholder";
-    const data = {
-      cat1: { id: "cat1", name: "Option1" },
-      cat2: { id: "cat2", name: "Option2" },
-    };
     const { getByTestId } = render(
       <SelectBox
         selected=""
-        data={data}
+        data={twoOptions}
         onSelect={jest.fn()}
         placeholder={placeholderText}
       />
@@ -34,15 +42,10 @@ describe("Select Box", () => {
   });
 
   it("should render the right number of options", () => {
-    const placeholderText = "placeholder";
-    const data = {
-      cat1: { id: "cat1", name: "Option1" },
-      cat2: { id: "cat2", name: "Option2" },
-    };
     const { getAllByRole } = render(
       <SelectBox
         selected=""
-        data={data}
+        data={twoOptions}
         onSelect={jest.fn()}
         placeholder={placeholderText}
       />
@@ -51,16 +54,10 @@ describe("Select Box", () => {
   });
 
   it("should select the option provided in its props", () => {
-    const placeholderText = "placeholder";
-    const data = {
-      Option1: { id: "Option1", name: "Option1" },
-      Option2: { id: "Option2", name: "Option2" },
-      Option3: { id: "Option3", name: "Option3" },
-    };
     const { getAllByTestId } = render(
       <SelectBox
         selected="Option2"
-        data={data}
+        data={threeOptions}
         onSelect={jest.fn()}
         placeholder={placeholderText}
       />
@@ -72,17 +69,11 @@ describe("Select Box", () => {
   });
 
   it("should call the onSelect function from its props", () => {
-    const placeholderText = "placeholder";
-    const data = {
-      Option1: { id: "Option1", name: "Option1" },
-      Option2: { id: "Option2", name: "Option2" },
-      Option3: { id: "Option3", name: "Option3" },
-    };
     const onSelect = jest.fn();
     render(
       <SelectBox
         selected="Option2"
-        data={data}
+        data={threeOptions}
         onSelect={onSelect}
         placeholder={placeholderText}
       />
